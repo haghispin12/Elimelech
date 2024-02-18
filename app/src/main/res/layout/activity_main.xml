@@ -22,19 +22,18 @@
         />
 
 
-    <Button
-        android:layout_width="148dp"
-        android:layout_height="90dp"
-        android:layout_weight="8000"
-        android:text="כפל עד 20"
-        android:textSize="20sp"
-        android:layout_marginRight="4dp"
-        android:layout_marginLeft="4dp"
-        android:id="@+id/loah20"
-        android:layout_marginTop="3dp"
-         />
+        <Button
+            android:id="@+id/loah20"
+            android:layout_width="148dp"
+            android:layout_height="90dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="8000"
+            android:text="כפל עד 20"
+            android:textSize="20sp" />
 
-    <Button
+        <Button
         android:layout_width="148dp"
         android:layout_height="90dp"
         android:layout_weight="8000"
@@ -57,19 +56,18 @@
         android:id="@+id/erer1"
         />
 
+
     <TextView
+        android:id="@+id/erer2"
         android:layout_width="148dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:background="@color/material_dynamic_neutral60"
-        android:text="X"
-        android:textSize="80sp"
-        android:textAlignment="center"
-        android:gravity="center"
         android:layout_marginTop="6dp"
-        android:id="@+id/erer2"
-        />
-
+        android:background="@color/material_dynamic_neutral60"
+        android:gravity="center"
+        android:text="X"
+        android:textAlignment="center"
+        android:textSize="80sp" />
 
     <TextView
         android:layout_width="148dp"
