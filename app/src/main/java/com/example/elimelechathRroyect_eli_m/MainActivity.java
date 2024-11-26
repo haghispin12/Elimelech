@@ -1,9 +1,14 @@
 package com.example.elimelechathRroyect_eli_m;
 
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,22 +29,40 @@ public class MainActivity extends AppCompatActivity {
     private TextView empty2;
     private TextView X;
     private EditText Answer;
-    private int num;
-    private int num2;
-    private int num3;
     private String st;
-    private int numb;
     private String ai;
+    private Exercize exe;
+    private Button Rate;
+    private TextView tview;
+    private TextView name;
+    private String sst;
+    private int num3;
+    private int num;
 
 
+
+    ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    num = result.getData().getIntExtra("rate",-1);
+                  updateViews(num,num);
+                }
+            }
+    );
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        initveow();
-
+        Intent intent = getIntent();
+        sst=intent.getStringExtra("user");
+        name.setText(sst);
     }
+    @SuppressLint("MissingInflatedId")
     public void initveow(){
+        exe=new Exercize();
         setContentView(R.layout.activity_main);
         loah = findViewById(R.id.loah);
         loah20 = findViewById(R.id.loah20);
@@ -51,65 +74,72 @@ public class MainActivity extends AppCompatActivity {
         empty2 = findViewById(R.id.erer3);
         X = findViewById(R.id.erer2);
         Answer = findViewById(R.id.Answer);
+        Rate=findViewById(R.id.RATE2);
+        tview=findViewById(R.id.View11);
+        name=findViewById(R.id.etr);
 
-        loah.setOnClickListener(new View.OnClickListener() {
+
+
+
+
+        loah.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
-                Random r = new Random();
-                int num = r.nextInt(9)+1;
-                int num2 = r.nextInt(9)+1;
-                updateViews( num, num2);
-                num3=num*num2;
+                exe.loah();
+                updateViews(exe.getNum(),exe.getnum2());
+                num3= exe.getNum()* exe.getnum2();
             }
         });
 
         loah20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Random r = new Random();
-                int num = r.nextInt(19)+1;
-                int num2 = r.nextInt(9)+1;
-                updateViews(num, num2);
-                num3=num*num2;
+                exe.loah20();
+                updateViews(exe.getNum(),exe.getnum2());
+                num3= exe.getNum()* exe.getnum2();
             }
         });
 
         challenge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Random r = new Random();
-                int num = r.nextInt(99)+1;
-                int num2 = r.nextInt(9)+1;
-                updateViews(num,num2);
-                num3=num*num2;
+                exe.challenge();
+                updateViews(exe.getNum(),exe.getnum2());
+                 num3 = exe.getNum() * exe.getnum2();
             }
         });
 
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               int st=Integer.valueOf(Answer.getText().toString());
-               int rt = num3;
-                if(st==rt) {
+                if(exe.test(Answer.getText().toString())) {
                     ai = "כל הכבוד";
                     updateViewst(ai);
                 }
                     else{
                     ai="לוזר" ;
                     updateViewst(ai);
-
-                }
-
-
+                    }
                     ;
             }
+        });
 
+        Rate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,RateActivity.class);
+                startActivity(intent);
+
+
+            }
         });
 
 
-
-
     }
+
+
+
     public void updateViews(int num,int num2){
         empty1.setText(num+"");
         empty2.setText(num2+"");
@@ -119,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
         empty2.setText(ai);
     }
 
+    }
 
 
-}
+
