@@ -140,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
         showaallusers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,showalluser.class);
-                startActivity(intent);
+                //Intent intent = new Intent(MainActivity.this,showalluser.class);
+                //startActivity(intent);
 
 
             }
