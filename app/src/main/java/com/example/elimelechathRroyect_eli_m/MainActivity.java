@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -135,6 +137,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        showaallusers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,showalluser.class);
+                startActivity(intent);
+
+
+            }
+        });
 
     }
 
