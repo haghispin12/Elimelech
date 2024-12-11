@@ -6,6 +6,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
     private Button loah;
     private Button challenge;
     private Button loah20;
@@ -53,19 +55,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
     );
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
        initveow();
         Intent intent = getIntent();
         sst=intent.getStringExtra("user");
         name.setText(sst);
     }
-    @SuppressLint("MissingInflatedId")
     public void initveow(){
         exe=new Exercize();
-        setContentView(R.layout.activity_main);
+
         loah = findViewById(R.id.loah);
         loah20 = findViewById(R.id.loah20);
         challenge = findViewById(R.id.challenge);
@@ -140,10 +141,10 @@ public class MainActivity extends AppCompatActivity {
         showaallusers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(MainActivity.this,showalluser.class);
-                //startActivity(intent);
 
+                trans.add(R.id.fram123, new Showallusers());
 
+                trans.commit();
             }
         });
 
